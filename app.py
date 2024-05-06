@@ -63,34 +63,17 @@ def transform_image(image):
 hand_gesture_map = {
     0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'I', 9: 'J',
     10: 'K', 11: 'L', 12: 'M', 13: 'N', 14: 'O', 15: 'P', 16: 'Q', 17: 'R', 18: 'S',
-    19: 'T', 20: 'U', 21: 'V', 22: 'W', 23: 'X', 24: 'Y', 25: 'Z'
+    19: 'T', 20: 'U', 21: 'V', 22: 'W', 23: 'X', 24: 'Y'
 }
 
 face_expression_map = {
-    0: 'Angry', 1: 'Disgust', 2: 'Fear', 3: 'Happy', 4: 'Sad', 5: 'Surprise', 6: 'Neutral'
+    0: 'Angry', 1: 'Fear', 2: 'Happy', 3: 'Sad', 4: 'Surprise', 5: 'Neutral'
 }
 
 # Streamlit interface
 st.title("Gesture and Expression Prediction")
 uploaded_file_hand = st.file_uploader("Choose a hand image...", type=["png", "jpg", "jpeg"])
 uploaded_file_face = st.file_uploader("Choose a face image...", type=["png", "jpg", "jpeg"])
-
-# if st.button("Predict"):
-#     if uploaded_file_hand is not None and uploaded_file_face is not None:
-#         image_hand = Image.open(io.BytesIO(uploaded_file_hand.read())).convert('L')
-#         image_face = Image.open(io.BytesIO(uploaded_file_face.read())).convert('L')
-#         tensor_hand = transform_image(image_hand).unsqueeze(0)
-#         tensor_face = transform_image(image_face).unsqueeze(0)
-
-#         with torch.no_grad():
-#             hand_output, face_output = model(tensor_hand, tensor_face)
-#             hand_prediction = hand_output.argmax(1).item()
-#             face_prediction = face_output.argmax(1).item()
-
-#         st.write(f'Predicted hand gesture index: {hand_prediction}')
-#         st.write(f'Predicted face expression index: {face_prediction}')
-#     else:
-#         st.error("Please upload both hand and face images.")
 
 if st.button("Predict"):
     if uploaded_file_hand is not None and uploaded_file_face is not None:
